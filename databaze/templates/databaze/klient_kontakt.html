@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Kontakt</h2>
+    {% load static %}
+    {% for kontakt in kontakty %}
+            {{kontakt.klient.jmeno}} {{kontakt.klient.prijmeni}} <br>
+            {{kontakt.email}} <br>
+            {{kontakt.kontakt}} <br>
+            {{kontakt.adresa}} <br>
+    {% endfor %} <br>
+    <img src={% static 'databaze/person.png' %} alt="fotografie klienta">
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for klient in klienti %}
+    <a href={% url "klient_detail" klient.id %}> {{klient.jmeno}}
+             {{klient.prijmeni}} <br> </a>
+    {% endfor %} <br>
+{% endblock %}

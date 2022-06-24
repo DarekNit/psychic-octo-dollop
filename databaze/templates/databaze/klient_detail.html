@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+    <h1> {{ klient.prijmeni }} {{ klient.jmeno }}<span class="glyphicon glyphicon-erase"></span></h1>
+    <img src={% static 'databaze/person.png' %} alt="fotografie klienta"> <br>
+    <small>Datum narození:{{klient.narozeni}} </small>  <br>
+    Pojištění: {% if klient.pojisteni.all.0 %} {% for pojisteni in klient.pojisteni.all %} <div class="btn btn-primary">{{pojisteni.pojisteni_title}} </div> {% endfor %} {% else %} <span style="color: red;">Tento klient nemá žádné pojištění</span> {% endif %}
+    <hr>
+    <a href={% url "klient_kontakt" klient.id %}>Kontakt</a>
+    <form method="POST">
+        {% csrf_token %}
+
+        {% if user.is_admin %}<button name="edit">Upravit klienta</button><button name="delete">Smazat klienta</button>{% endif %}
+    </form>
+{% endblock %}
